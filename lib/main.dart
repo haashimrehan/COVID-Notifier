@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:testProject/maps_widget.dart';
 import 'locations.dart' as locations;
+import 'placeholder_widget.dart';
+
 
 
 void main() {
@@ -8,7 +11,7 @@ void main() {
 }
 
 class MyApp extends StatefulWidget { //might need to be sateless?
-  static const String _title = 'Flutter Code Sample';
+  static const String _title = 'uhhh';
 
   @override
   _MyAppState createState() => _MyAppState();
@@ -25,28 +28,20 @@ class MyApp extends StatefulWidget { //might need to be sateless?
 
 class _MyAppState extends State<MyApp> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
+
+  final List<Widget> _children = [
+    PlaceholderWidget(Colors.blue),
+    Maps(),
+    PlaceholderWidget(Colors.green)
   ];
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+
+
+
+
+  static const TextStyle optionStyle =
+  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+
 
 
   //MAPS BELOW
@@ -71,24 +66,30 @@ class _MyAppState extends State<MyApp> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+    Widget build(BuildContext context) {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData.dark(),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('does this work?? '),
-          backgroundColor: Colors.red[700],
+          title: const Text('COVID Notifier'),
+          backgroundColor: Colors.blue[700],
+        ),
+        body: Container(
+          child: _children[_selectedIndex],
         ),
         bottomNavigationBar: BottomNavigationBar(
-          currentIndex: 0, //CHANGE LATER
+          onTap: onTabTapped,
+          currentIndex: _selectedIndex,
           items: [
             BottomNavigationBarItem(
               icon: new Icon(Icons.home),
-              title: new Text('Home'),
+              title: new Text('Sign In'),
 
             ),
             BottomNavigationBarItem(
               icon: new Icon(Icons.mail),
-              title: new Text('Messages'),
+              title: new Text('Maps'),
 
             ),
             BottomNavigationBarItem(
@@ -97,21 +98,18 @@ class _MyAppState extends State<MyApp> {
             ),
           ],
         ),
-        body: Container(
-          width: 2220,
-          height: 630,
-          child: GoogleMap(
-            onMapCreated: _onMapCreated,
-            initialCameraPosition: CameraPosition(
-              target: const LatLng(0, 0),
-              zoom: 2,
-            ),
-            markers: _markers.values.toSet(),
-          ),
 
-        )
+
+
 
       ),
     );
   }
+
+  void onTabTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
 }
