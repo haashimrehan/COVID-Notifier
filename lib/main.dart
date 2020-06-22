@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:testProject/Screens/Login.dart';
 import 'package:testProject/maps_widget.dart';
 import 'locations.dart' as locations;
 import 'placeholder_widget.dart';
@@ -11,7 +10,6 @@ import 'home_page.dart';
 void main() {
   runApp(MyApp());
 }
-
 
 class MyApp extends StatefulWidget { //might need to be sateless?
   static const String _title = 'uhhh';
@@ -24,7 +22,9 @@ class MyApp extends StatefulWidget { //might need to be sateless?
       //home: HomePage() ,
     );
   }
+
 }
+
 
 //MAPS
 
@@ -32,11 +32,12 @@ class _MyAppState extends State<MyApp> {
   int _selectedIndex = 0;
 
   final List<Widget> _children = [
-    WelcomeScreen(),
+    PlaceholderWidget(Colors.blue),
     Maps(),
     HomePage(),
     PlaceholderWidget(Colors.black26),
   ];
+
 
 
 
@@ -120,4 +121,3 @@ class _MyAppState extends State<MyApp> {
   }
 
 }
-
