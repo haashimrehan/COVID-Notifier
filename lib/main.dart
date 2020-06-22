@@ -3,6 +3,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:testProject/maps_widget.dart';
 import 'locations.dart' as locations;
 import 'placeholder_widget.dart';
+import 'home_page.dart';
 
 
 
@@ -18,6 +19,7 @@ class MyApp extends StatefulWidget { //might need to be sateless?
   Widget build(BuildContext context) {
     return MaterialApp(
       title: _title,
+      //home: HomePage() ,
     );
   }
 
@@ -32,7 +34,8 @@ class _MyAppState extends State<MyApp> {
   final List<Widget> _children = [
     PlaceholderWidget(Colors.blue),
     Maps(),
-    PlaceholderWidget(Colors.green)
+    HomePage(),
+    PlaceholderWidget(Colors.black26),
   ];
 
 
@@ -88,8 +91,13 @@ class _MyAppState extends State<MyApp> {
 
             ),
             BottomNavigationBarItem(
-              icon: new Icon(Icons.mail),
+              icon: new Icon(Icons.map),
               title: new Text('Maps'),
+
+            ),
+            BottomNavigationBarItem(
+              icon: new Icon(Icons.radio_button_checked),
+              title: new Text('Location Services'),
 
             ),
             BottomNavigationBarItem(
