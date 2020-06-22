@@ -1,10 +1,11 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 
-String Lat;
-String Lng;
-
+double userLat = 5.0;
+double userLng = 5.0;
 
 class HomePage extends StatefulWidget {
   @override
@@ -27,7 +28,7 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             if (_currentPosition != null)
               Text(
-                  "LAT: ${_currentPosition.latitude}, LNG: ${_currentPosition.longitude}"),
+                  "LAT: ${userLat}, LNG: ${userLng}"),
             FlatButton(
               child: Text("Get location"),
               onPressed: () {
@@ -49,6 +50,9 @@ class _HomePageState extends State<HomePage> {
         .then((Position position) {
       setState(() {
         _currentPosition = position;
+        userLat = position.latitude;
+        userLng = position.longitude;
+
 
       });
     }).catchError((e) {
