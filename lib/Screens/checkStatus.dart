@@ -21,9 +21,9 @@ class Status {
   static List<Status> getStatus() {
     return<Status>[
       Status(1, 'Healthy'),
-      Status(2, 'partically Sick (few symptoms showing)'),
-      Status(4, 'Asymptomatic'),
-      Status(5, 'Corona Infected'),
+      Status(2, 'Concerned'),
+      Status(3, 'Symptomatic'),
+      Status(4, 'Infected'),
     ];
   }
 
